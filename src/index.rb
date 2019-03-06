@@ -398,7 +398,7 @@ Icing sugar, to dust\n\n",
 
 
 
-    #created method to ask if date is vegan incase we expand meal options 
+    #method to ask if date is vegan, keeps code DRY and is scalable for different meal options returns either "y" or "n" 
     def vegan_question
         puts "It's #{Time.now.year} so we need to ask, is your date a vegan?"
         answer = gets.chomp.downcase.chars.first
@@ -408,9 +408,9 @@ Icing sugar, to dust\n\n",
             answer = gets.chomp.downcase.chars.first
          end
          answer
-        end
-
-        def gluten_question
+    end
+    #method returns either "y" or "n" value. Scaleable for different cases 
+    def gluten_question
             puts "We don't want your date to have an upset stomach so one last question:"
             puts "Is your date gluten intolerant?"
             answer = gets.chomp.downcase.chars.first
@@ -420,23 +420,29 @@ Icing sugar, to dust\n\n",
             answer = gets.chomp.downcase.chars.first
          end
          answer
-        end
-
-        def output_gf_recipe (argument)
+    end
+    #method to output key value pair from the Cookbook but key must include "_gf" will be scaleable for multiple gluten free recipes
+    def output_gf_recipe (argument)
+            system "clear"
             gf_key = argument.return_gluten_free_key
-            puts gf_key
+            #change key from symbol to string, remove the "_gf" identifier, and colorize
+            puts gf_key.to_s.chomp("_gf").colorize(:magenta)
             puts argument.custom_fetch gf_key
-        end
+    end
+
+    prog_name = "Cooking For Two!".colorize(:light_red)
 
         
 
 
-#user input for later functionality
-puts "Hello, what is your name?"
-user_name = gets.chomp 
+#user input for later functionality, saving shopping lists to file based on user
+puts "Hi! Welcome to #{prog_name} What is your name?"
+user_name = gets.chomp
+system "clear" 
 puts "So #{user_name} do you have a date tonight?"
-#turn answer into single downcase letter to allow some varation on input
+#turn answer into single downcase letter to allow some varation on input eg "yeah", "yep", "nope" etc
 date = gets.chomp.downcase.chars.first
+#validates input, will not allow app to progress unless the input is correct
 until (date == "y") or (date == "n")
     system "clear"
     puts "Please answer either yes or no!"
@@ -445,88 +451,88 @@ end
 
 case date
 when "y"
+    system "clear"
     puts "That's awesome! What kind of meal did you want to cook for them?"
     puts "Please choose either a snack, main, or dessert"
     meal_choice = gets.chomp.downcase
+    #another until loop to validate meal choice
     until meal_choice == "snack" or meal_choice == "main" or meal_choice == "dessert"
         system "clear"
         puts "Please choose either a snack, main, or dessert"
         meal_choice = gets.chomp.downcase
     end
     
+     #control flow to determine which cookbook will be used, note that gluten free recipes reside within existing cookbooks
+     # see output_recipe and output_gf_recipe methods if confused by the following
+    case meal_choice
+        when "snack"
+            system "clear"
+            if vegan_question == "y"
+                system "clear"
+                puts "Okay, you're cooking a vegan #{meal_choice}"
+                if gluten_question == "y"
+                    output_gf_recipe vegan_snacks
+                else 
+                    vegan_snacks.output_recipe 
+                end
 
-case meal_choice
-    when "snack"
-        if vegan_question == "y"
-            puts "Okay a vegan #{meal_choice}"
-            if gluten_question == "y"
-                #use the vegan snack cookbook with the return gluten free key method
-                output_gf_recipe vegan_snacks
-            else 
-                #use the vegan snack cookbook on its own
-                vegan_snacks.output_recipe 
-            end
-
-        else 
-            puts "Cool so a #{meal_choice}"
-            if gluten_question == "y"
-                # use non vegan snack cookbook with return gluten free key method
-                output_gf_recipe snacks
             else
-                #use non vegan snack cookbook on its own
-                snacks.output_recipe
+                system "clear" 
+                puts "Cool, you're cooking a #{meal_choice}"
+                if gluten_question == "y"
+                    output_gf_recipe snacks
+                else
+                    snacks.output_recipe
+                end
             end
-        end
-        
-    when "main"
-        if vegan_question == "y"
-            puts "Okay a vegan #{meal_choice}"
-            if gluten_question == "y"
-                # use vegan main meal cookbook with return gluten free key method
-                output_gf_recipe vegan_mains
-            else
-                #use vegan main meal cookbook on it's own
-                vegan_mains.output_recipe
-            end
-        else 
-            puts "Cool so a #{meal_choice}"
-            if gluten_question == "y"
-                #use non vegan main meal cookbook with return gluten free method
-                output_gf_recipe mains
-             else
-              # use non vegan main meal cookbook on it's own
-               mains.output_recipe
-             end
-
-        end
-    when "dessert"
-        if vegan_question == "y"
-            puts "Okay a vegan #{meal_choice}"
-            if gluten_question == "y"
-                #use vegan dessert cookbook with return gluten free method 
-                output_gf_recipe vegan_desserts
             
-            else 
-                #use vegan dessert cookbook on its own
-                vegan_desserts.output_recipe
+        when "main"
+            system "clear"
+            if vegan_question == "y"
+                system "clear"
+                puts "Wow, you're cooking a vegan #{meal_choice}"
+                if gluten_question == "y"
+                    output_gf_recipe vegan_mains
+                else
+                    vegan_mains.output_recipe
+                end
+            else
+                system "clear" 
+                puts "Amazing! You're cooking a #{meal_choice}"
+                if gluten_question == "y"
+                    output_gf_recipe mains
+                else
+                    mains.output_recipe
+                end
+
             end
 
-        else 
-            puts "Cool so a #{meal_choice}"
-            if gluten_question == "y"
-             #use non vegan dessert cookbook with return gluten free method
-             output_gf_recipe desserts
+        when "dessert"
+            system "clear"
+            if vegan_question == "y"
+                system "clear"
+                puts "Oh nice, you're cooking a vegan #{meal_choice}"
+                if gluten_question == "y"
+                    output_gf_recipe vegan_desserts
+                else 
+                    vegan_desserts.output_recipe
+                end
+
             else
-                #use non vegan cookbook on its own 
-            desserts.output_recipe
+                system "clear" 
+                puts "Cool, you're cooking a #{meal_choice}"
+                if gluten_question == "y"
+                    output_gf_recipe desserts
+                else
+                    desserts.output_recipe
+                end
             end
-        end
     end
 
 
 when "n"
-    #Here's a recipe for 2 minute noodles
-    puts "Oh no what a bummer?"
+    #Maybe create a Cookbook full or recipes for one?
+    puts "Looks like it's Mi Goreng and Netflix for you tonight!"
 end
 
 

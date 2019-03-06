@@ -1,25 +1,56 @@
 README
 
+COOKING FOR TWO
+By Ari Friedgut and Alex Baulderstone
+GITHUB LINK - [cooking_for_two_github](https://github.com/fxbip/cooking_for_two)  
+![branches](docs/branches.png)
+![master](docs/master.png)
+
 Description
 ****************************
 Can't decide what to cook for your date?
 Cooking For Two is a terminal app that allows you to impress a special someone in your life with delicious date night recipes for a variety of situations! Whether you want to make a meal, a dessert or simply a light snack, Cooking For Two has the recipe for you!
 Cooking For Two takes into account your date's dietary preferences, with options for vegans and people who are gluten intolerant.
+STRETCH GOAL -
 If you don't like a recipe, let us know and we will never suggest it to you again! If you LOVE a recipe, tell us and it will be added to your favourites!
-
-
+ANOTHER STRETCH GOAL - 
+We would like to implement a feature that writes the ingredients to a text file that can then be used as the user's shopping list.
 
 Instructions
 ****************************
+1. In terminal, make sure you are in the directory that houses the program.
+2. type "cd src" to take you to the source code files so you can run the program.
+3. Run the program by typing "ruby index.rb"
+4. Answer the prompt for your name by typing in your name.
+5. Answer the following prompts by typing 'yes' or 'no'.
+6. Receive the perfect recipe for date night!
 
-
-Planning
+Screenshots of the Program
 ****************************
+![program1](docs/program1.png)
+![program2](docs/program2.png)
+![program3](docs/program3.png)
+![program4](docs/program4.png)
+![program5](docs/program5.png)
+![program6](docs/program6.png)
+
+Screenshots of the Code
+****************************
+![cookbook1](docs/cookbook_class1.png)
+![cookbook2](docs/cookbook_class2.png)
+![index1](docs/index1.png)
+![index2](docs/index2.png)
+![index3](docs/index3.png)
+![index4](docs/index4.png)
+
+PLANNING
+****************************
+
 After iterating through a couple ideas in a brainstorm,
-![a relative link](docs/brainstorm.jpg)
+[brainstorm](docs/brainstorm.jpg)  
 We decided to work on an app that draws on a database of recipes and outputs a recipe that will be suitable for the user.
 Initially we thought it might be nice if the app starts by asking the user how many people they are cooking for
-![a relative link](docs/how_many_people.jpg)
+![a relative link](docs/how_many_people.jpg)  
 but then we decided that since we only have two days to create this app it would be necessary to simplify the concept. We did so by deciding the app would be for people who are cooking for a date.
 
 The name "Cooking For Two" emerged naturally from this process, and we drew up a rough flow chart indicating how the app would run.
@@ -64,7 +95,35 @@ as well as keeping up constant communication via Slack.
 ![a relative link](docs/slack_3.jpg)
 ![a relative link](docs/slack_4.jpg)
 ![a relative link](docs/slack_5.jpg)
+![a relative link](docs/slack_6.jpg)
+![a relative link](docs/slack_7.jpg)
+![a relative link](docs/slack_8.jpg)
 
-As Ari worked on the Description and Planning section of our README.md file, Alex put together a .rb doc that defined a Cookbook class.
+There were three documents to put together
+- a parent Cookbook class
+- different objects based on the meal requirements
+- an index.rb file from which our program would run
 
-Ari then coded a doc that referenced the Cookbook class and created objects for each potential outcome as Alex worked on the control flow of the program.
+MORE TRELLO SCREENSHOTS  
+[link 1](docs/trello_1.jpg)  
+[link 2](docs/trello_2.jpg)  
+[link 3](docs/trello_3.jpg)  
+
+FLOWCHART
+****************************
+![flowchart](docs/cooking_for_two.jpg)
+
+Timeline
+****************************
+Brainstorm - 1.5 hr
+Planning - 3 hr
+Coding (Cookbook class) - 4 hr
+Coding (Objects) - 1.5 hr
+Coding (index.rb) - 4 hr
+README.md - 2 hr
+
+Ethical and moral concerns
+****************************
+The app could potentially be isolating to single people, especially in its current iteration where there's no option for single serving meals. In the future this could be changed to be a bit more sensitive. Although why you'd use an app called cooking for two to find a meal for one is beyond us. 
+As this is an open source project it's possible that someone could add non vegan recipes to vegan cookbooks or to add recipes that don't conform to some other criteron 
+At this stage in development the app doesn't cater to any more diet types and there are a lot of culturally significant dietary choices (halal, kosher, etc ) that aren't being catered for. There's potential for users to be offended or perhaps unwittingly offend their date by cooking the wrong type of meal 
